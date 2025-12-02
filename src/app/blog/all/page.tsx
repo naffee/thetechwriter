@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
@@ -202,8 +203,30 @@ const categories = [
 ];
 
 export default function AllBlogsPage() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
+  
+  // Get category name from slug
+  const getCategoryName = (slug: string | null) => {
+    if (!slug) return 'All';
+    const categoryMap: { [key: string]: string } = {
+      'developer': 'Developer',
+      'ai-ml': 'AI & ML',
+      'saas-product': 'SaaS & Product',
+      'deep-dives': 'Deep Dives',
+      'writing': 'Writing',
+      'everyday-user': 'Everyday User',
+    };
+    return categoryMap[slug] || 'All';
+  };
+  
+  const [selectedCategory, setSelectedCategory] = useState(getCategoryName(categoryParam));
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Update category when URL param changes
+  useEffect(() => {
+    setSelectedCategory(getCategoryName(categoryParam));
+  }, [categoryParam]);
 
   // Filter posts based on category and search
   const filteredPosts = blogPosts.filter(post => {

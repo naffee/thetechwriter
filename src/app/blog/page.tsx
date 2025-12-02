@@ -10,7 +10,6 @@ import { DeveloperIcon, AIIcon, SaaSIcon, DeepDivesIcon, WritingIcon, EverydayUs
 // Blog post data
 const blogPosts = [
   {
-    id: 1,
     title: 'How to Build an AI Content Generator with Next.js & OpenAI',
     slug: 'ai-content-generator-nextjs',
     excerpt: 'A modern, developer-friendly tutorial for building practical AI tools. Learn to create a simple AI content generator using Next.js 14 and OpenAI API.',
@@ -251,40 +250,11 @@ export default function BlogPage() {
                 Insights, tutorials, and deep dives on AI, SaaS, and developer tools.
               </p>
               
-              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mb-2">
-                I write practical, clear content for builders — from developers and product managers to founders and technical teams.
-              </p>
-              
               <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
                 Browse by category or explore the latest posts.
               </p>
 
-              {/* Search Bar - Larger & Centered */}
-              <div className="max-w-2xl mx-auto">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search tutorials, concepts, ideas…"
-                    disabled
-                    className="w-full px-8 py-5 pr-16 rounded-3xl border-2 border-brand-neutral dark:border-gray-700 focus:border-brand-purple focus:outline-none text-brand-black dark:text-white dark:bg-gray-800 placeholder-gray-400 transition-colors text-lg shadow-lg cursor-not-allowed opacity-50"
-                  />
-                  <svg
-                    className="absolute right-6 top-1/2 -translate-y-1/2 w-7 h-7 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Search Helper Text */}
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
-                (Find exactly what you need.)
-              </p>
-
-              {/* Quick Stats - Removed */}
+              {/* Quick Stats */}
               <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
                 <div className="text-center">
                   <div className="font-heading font-bold text-4xl md:text-5xl text-brand-purple mb-2">{blogPosts.length}</div>
@@ -303,64 +273,40 @@ export default function BlogPage() {
           </div>
         </section>
 
-        {/* Browse by Category Section */}
+        {/* Category Cards Section */}
         <section className="section-padding bg-white dark:bg-gray-800">
-          <div className="container-custom max-w-6xl">
+          <div className="container-custom">
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-brand-black dark:text-white mb-2 text-center">
-              <span className="text-brand-purple">⭐</span> Browse by Category
+              <span className="text-brand-purple">📚</span> Explore Categories
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 text-center">
-              Find content tailored to your interests
+            <p className="text-gray-600 dark:text-gray-300 text-lg mb-12 text-center max-w-2xl mx-auto">
+              Find content tailored to your interests. Dive deeper into any category on the all articles page.
             </p>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {categories.filter(cat => cat.name !== 'All').map((category) => (
-                <div
+                <Link
                   key={category.slug}
-                  onClick={() => window.location.href = '/blog/all'}
-                  className={`group bg-gradient-to-br ${category.color} rounded-2xl p-6 cursor-pointer border-2 ${category.borderColor} ${category.hoverColor} hover:shadow-xl transition-all duration-300 hover:scale-[1.02]`}
+                  href={`/blog/all?category=${category.slug}`}
+                  className={`group bg-gradient-to-br ${category.color} rounded-2xl p-6 border-2 ${category.borderColor} ${category.hoverColor} hover:shadow-xl transition-all duration-300 hover:scale-[1.02] flex flex-col h-full`}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 flex-shrink-0">
-                      {category.iconComponent && <category.iconComponent />}
-                    </div>
-                    <div className="flex-grow">
-                      <h3 className="font-heading font-bold text-xl md:text-2xl text-brand-black dark:text-white mb-2 group-hover:text-brand-purple transition-colors">
-                        {category.name}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                        {category.description}
-                      </p>
-                      <button className="inline-flex items-center gap-2 text-brand-purple font-semibold group-hover:gap-3 transition-all">
-                        <span>Explore</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </button>
-                    </div>
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 flex-shrink-0 text-3xl">{category.icon}</div>
+                    <h3 className="font-heading font-bold text-xl text-brand-black dark:text-white group-hover:text-brand-purple transition-colors">
+                      {category.name}
+                    </h3>
                   </div>
-                </div>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 flex-grow">
+                    {category.description}
+                  </p>
+                  <div className="flex items-center gap-2 text-brand-purple font-semibold group-hover:gap-3 transition-all">
+                    <span>Explore</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </Link>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Category Navigation - Centered & Cleaner */}
-        <section className="py-6 sm:py-8 bg-white dark:bg-gray-800 sticky top-16 sm:top-20 z-40 shadow-sm">
-          <div className="container-custom">
-            <div className="flex justify-center">
-              <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-                {categories.map((category) => (
-                  <Link
-                    key={category.slug}
-                    href="/blog/all"
-                    className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-2xl font-medium text-sm sm:text-base whitespace-nowrap transition-all duration-300 bg-brand-neutral dark:bg-gray-700 text-brand-black dark:text-white hover:bg-brand-purple/10 dark:hover:bg-brand-purple/20"
-                  >
-                    <span className="text-lg">{category.icon}</span>
-                    <span>{category.name === 'AI & ML' ? 'AI' : category.name === 'SaaS & Product' ? 'SaaS' : category.name === 'Deep Dives' ? 'Deep' : category.name === 'Everyday User' ? 'Everyday' : category.name}</span>
-                  </Link>
-                ))}
-              </div>
             </div>
           </div>
         </section>

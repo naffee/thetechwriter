@@ -174,17 +174,15 @@ export default function BlogSection() {
                       setExpandedCard(expandedCard === index ? null : index);
                     }
                   }}
-                  className={`overflow-hidden group cursor-pointer flex flex-col relative transition-all duration-300 peer ${
-                    expandedCard === index ? 'z-50 col-span-2 row-span-2 sm:col-span-2 sm:row-span-2 md:col-span-3 md:row-span-3' : 'hover:z-50 hover:col-span-2 hover:row-span-2 sm:hover:col-span-2 sm:hover:row-span-2 md:hover:col-span-3 md:hover:row-span-3'
-                  } ${sizeClasses[sizePattern]} ${cardColors[colorPattern]} rounded-lg sm:rounded-2xl md:rounded-3xl shadow-md hover:shadow-2xl hover:scale-100 border border-gray-200/10`}
+                  className={`overflow-hidden flex flex-col relative ${sizeClasses[sizePattern]} ${cardColors[colorPattern]} rounded-lg sm:rounded-2xl md:rounded-3xl shadow-md border border-gray-200/10`}
                 >
                   {/* Image/Icon Area */}
-                  <div className={`h-16 sm:h-20 md:h-24 ${isColorful ? 'bg-black/20' : `bg-gradient-to-br ${post.color}`} flex items-center justify-center text-xl sm:text-2xl md:text-3xl relative overflow-hidden flex-shrink-0 transition-all duration-300`}>
-                    <span className="group-hover:scale-125 group-hover:rotate-6 transition-all duration-300 text-white">
+                  <div className={`h-16 sm:h-20 md:h-24 ${isColorful ? 'bg-black/20' : `bg-gradient-to-br ${post.color}`} flex items-center justify-center text-xl sm:text-2xl md:text-3xl relative overflow-hidden flex-shrink-0`}>
+                    <span className="text-white">
                       {post.image}
                     </span>
                     {/* Category Badge - hide on mobile */}
-                    <div className="hidden sm:block absolute top-0.5 sm:top-2 left-0.5 sm:left-2 transition-all duration-300 group-hover:scale-110">
+                    <div className="hidden sm:block absolute top-0.5 sm:top-2 left-0.5 sm:left-2">
                       <span className={`px-1 sm:px-2 py-0.25 sm:py-1 ${isColorful ? 'bg-white/90 text-purple-600' : 'bg-white/90 text-brand-purple'} backdrop-blur-sm text-xs font-semibold rounded-full`}>
                         {post.category}
                       </span>
@@ -223,42 +221,16 @@ export default function BlogSection() {
                       </div>
                     </div>
 
-                    {/* Desktop/Tablet Expanded Card - shows on hover with excerpt */}
-                    <div className={`hidden sm:flex absolute inset-0 bg-black/60 backdrop-blur-sm rounded-lg transition-all duration-300 flex-col justify-between p-4 z-50 ${expandedCard === null ? 'sm:opacity-0 sm:group-hover:opacity-100' : 'opacity-100'}`}>
-                      <div>
-                        <div className={`flex items-center gap-2 mb-3 ${isColorful ? (isDark ? 'text-gray-900' : 'text-white') : 'text-brand-black dark:text-white'}`}>
-                          <span className="text-2xl">{post.image}</span>
-                          <span className={`text-xs font-semibold ${isColorful ? (isDark ? 'text-gray-800' : 'text-white/80') : 'text-gray-600 dark:text-gray-300'}`}>{post.category}</span>
-                        </div>
-                        <h3 className={`font-heading font-bold text-base md:text-lg leading-tight mb-2 ${isColorful ? (isDark ? 'text-gray-900' : 'text-white') : 'text-brand-black dark:text-white'}`}>
-                          {post.title}
-                        </h3>
-                      </div>
-                      <div>
-                        <p className={`text-xs md:text-sm leading-relaxed mb-4 ${isColorful ? (isDark ? 'text-gray-700' : 'text-white/90') : 'text-gray-600 dark:text-gray-300'}`}>
-                          {post.excerpt}
-                        </p>
-                        <Link href={`/blog/${post.slug}`} className="inline-block">
-                          <div className={`flex items-center gap-2 text-xs md:text-sm font-semibold px-4 py-2 rounded-full transition-all ${isColorful ? (isDark ? 'bg-gray-200 text-gray-900 hover:bg-white' : 'bg-white/20 text-white hover:bg-white/30') : 'bg-brand-purple/20 text-brand-purple hover:bg-brand-purple/30'}`}>
-                            <span>Read Full Article</span>
-                            <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                          </div>
-                        </Link>
-                      </div>
-                    </div>
-
-                    {/* Excerpt - show only on tablet and desktop */}
-                    <p className={`hidden sm:block text-sm md:text-base leading-tight ${isColorful ? (isDark ? 'text-gray-700' : 'text-white/80') : 'text-gray-600 dark:text-gray-300'}`}>
+                    {/* Excerpt - show on tablet and desktop */}
+                    <p className={`hidden sm:block text-xs md:text-sm leading-relaxed line-clamp-3 flex-grow ${isColorful ? (isDark ? 'text-gray-700' : 'text-white/80') : 'text-gray-600 dark:text-gray-300'}`}>
                       {post.excerpt}
                     </p>
 
-                    {/* Hover Indicator - clickable link - desktop only */}
-                    <Link href={`/blog/${post.slug}`} className="hidden md:block mt-auto pt-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <div className={`flex items-center gap-2 text-sm font-semibold ${isColorful ? (isDark ? 'text-gray-900' : 'text-white') : 'text-brand-purple'}`}>
+                    {/* Read Article Link */}
+                    <Link href={`/blog/${post.slug}`} className="hidden md:block mt-auto pt-3">
+                      <div className={`flex items-center gap-2 text-xs font-semibold ${isColorful ? (isDark ? 'text-gray-900' : 'text-white') : 'text-brand-purple'}`}>
                         <span>Read Article</span>
-                        <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </div>
