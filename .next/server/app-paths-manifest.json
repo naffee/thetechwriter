@@ -1,7 +1,0 @@
-{
-  "/not-found": "app/not-found.js",
-  "/page": "app/page.js",
-  "/blog/perfect-onboarding-flows/page": "app/blog/perfect-onboarding-flows/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/blog/what-are-embeddings/page": "app/blog/what-are-embeddings/page.js"
-}
