@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { DeveloperIcon, AIIcon, SaaSIcon, DeepDivesIcon, WritingIcon, EverydayUserIcon, AllPostsIcon, AIContentGeneratorIcon, APIErrorsIcon, EmbeddingsIcon, PromptEngineeringIcon, OnboardingDesignIcon, PerfectOnboardingIcon, APIComparisonIcon, OAuthIcon, WriterToolsIcon, SimplicityIcon, ChatPromptsIcon, AIToolsIcon } from '@/components/BlogSVGIcons';
-
 
 // Blog post data
 const blogPosts = [
@@ -22,7 +21,6 @@ const blogPosts = [
     readTime: '12 min read',
     image: '🤖',
     imageComponent: AIContentGeneratorIcon,
-    featured: true,
     color: 'from-purple-500/20 to-fuchsia-500/20',
   },
   {
@@ -38,7 +36,6 @@ const blogPosts = [
     readTime: '8 min read',
     image: '🟪',
     imageComponent: APIErrorsIcon,
-    featured: true,
     color: 'from-purple-500/20 to-fuchsia-500/20',
   },
   {
@@ -54,7 +51,6 @@ const blogPosts = [
     readTime: '10 min read',
     image: '🔵',
     imageComponent: EmbeddingsIcon,
-    featured: true,
     color: 'from-blue-500/20 to-cyan-500/20',
   },
   {
@@ -70,7 +66,6 @@ const blogPosts = [
     readTime: '12 min read',
     image: '🔵',
     imageComponent: PromptEngineeringIcon,
-    featured: true,
     color: 'from-blue-500/20 to-cyan-500/20',
   },
   {
@@ -86,7 +81,6 @@ const blogPosts = [
     readTime: '11 min read',
     image: '🔐',
     imageComponent: OnboardingDesignIcon,
-    featured: true,
     color: 'from-green-500/20 to-emerald-500/20',
   },
   {
@@ -102,7 +96,6 @@ const blogPosts = [
     readTime: '10 min read',
     image: '🔐',
     imageComponent: PerfectOnboardingIcon,
-    featured: true,
     color: 'from-green-500/20 to-emerald-500/20',
   },
   {
@@ -118,7 +111,6 @@ const blogPosts = [
     readTime: '13 min read',
     image: '🔥',
     imageComponent: APIComparisonIcon,
-    featured: true,
     color: 'from-orange-500/20 to-amber-500/20',
   },
   {
@@ -134,7 +126,6 @@ const blogPosts = [
     readTime: '11 min read',
     image: '🔥',
     imageComponent: OAuthIcon,
-    featured: true,
     color: 'from-orange-500/20 to-amber-500/20',
   },
   {
@@ -150,7 +141,6 @@ const blogPosts = [
     readTime: '10 min read',
     image: '🎨',
     imageComponent: WriterToolsIcon,
-    featured: true,
     color: 'from-teal-500/20 to-cyan-500/20',
   },
   {
@@ -166,7 +156,6 @@ const blogPosts = [
     readTime: '9 min read',
     image: '🎨',
     imageComponent: SimplicityIcon,
-    featured: true,
     color: 'from-teal-500/20 to-cyan-500/20',
   },
   {
@@ -182,7 +171,6 @@ const blogPosts = [
     readTime: '8 min read',
     image: '💎',
     imageComponent: ChatPromptsIcon,
-    featured: true,
     color: 'from-pink-500/20 to-rose-500/20',
   },
   {
@@ -198,7 +186,6 @@ const blogPosts = [
     readTime: '9 min read',
     image: '💎',
     imageComponent: AIToolsIcon,
-    featured: true,
     color: 'from-pink-500/20 to-rose-500/20',
   },
 ];
@@ -206,67 +193,63 @@ const blogPosts = [
 // Categories for filtering
 const categories = [
   { name: 'All', slug: 'all', icon: '📚', iconComponent: AllPostsIcon, description: 'All posts' },
-  { name: 'Developer', slug: 'developer', icon: '🟪', iconComponent: DeveloperIcon, description: 'Hands-on guides with real code examples. Learn how to integrate APIs, build AI workflows, and create modern apps.', color: 'from-purple-50 to-fuchsia-50 dark:from-purple-950/30 dark:to-fuchsia-950/30', borderColor: 'border-purple-200 dark:border-purple-800', hoverColor: 'hover:border-brand-purple' },
-  { name: 'AI & ML', slug: 'ai-ml', icon: '🔵', iconComponent: AIIcon, description: 'Simple explanations of complex AI systems — from embeddings and vector databases to model behavior and prompting.', color: 'from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30', borderColor: 'border-blue-200 dark:border-blue-800', hoverColor: 'hover:border-blue-500' },
-  { name: 'SaaS & Product', slug: 'saas-product', icon: '🟢', iconComponent: SaaSIcon, description: 'Feature breakdowns, UX writing insights, onboarding strategies, and product clarity.', color: 'from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30', borderColor: 'border-green-200 dark:border-green-800', hoverColor: 'hover:border-green-500' },
-  { name: 'Deep Dives', slug: 'deep-dives', icon: '🔥', iconComponent: DeepDivesIcon, description: 'Advanced engineering topics explained with clarity — architecture, security, integrations, and dev tooling.', color: 'from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/30', borderColor: 'border-orange-200 dark:border-orange-800', hoverColor: 'hover:border-orange-500' },
-  { name: 'Writing', slug: 'writing', icon: '🌿', iconComponent: WritingIcon, description: 'Thoughts on technical writing, content strategy, documentation systems, and developer experience.', color: 'from-teal-50 to-cyan-50 dark:from-teal-950/30 dark:to-cyan-950/30', borderColor: 'border-teal-200 dark:border-teal-800', hoverColor: 'hover:border-teal-500' },
-  { name: 'Everyday User', slug: 'everyday-user', icon: '💎', iconComponent: EverydayUserIcon, description: 'Simple, jargon-free guides for everyday users exploring AI tools, software, and technology.', color: 'from-pink-50 to-rose-50 dark:from-pink-950/30 dark:to-rose-950/30', borderColor: 'border-pink-200 dark:border-pink-800', hoverColor: 'hover:border-pink-500' },
+  { name: 'Developer', slug: 'developer', icon: '🟪', iconComponent: DeveloperIcon, description: 'Hands-on guides with real code examples.' },
+  { name: 'AI & ML', slug: 'ai-ml', icon: '🔵', iconComponent: AIIcon, description: 'Simple explanations of complex AI systems.' },
+  { name: 'SaaS & Product', slug: 'saas-product', icon: '🟢', iconComponent: SaaSIcon, description: 'Feature breakdowns and UX insights.' },
+  { name: 'Deep Dives', slug: 'deep-dives', icon: '🔥', iconComponent: DeepDivesIcon, description: 'Advanced engineering topics explained.' },
+  { name: 'Writing', slug: 'writing', icon: '🌿', iconComponent: WritingIcon, description: 'Technical writing and documentation.' },
+  { name: 'Everyday User', slug: 'everyday-user', icon: '💎', iconComponent: EverydayUserIcon, description: 'Guides for everyday tech users.' },
 ];
 
-export default function BlogPage() {
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+export default function AllBlogsPage() {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
-
-  // Get 4 featured posts that change daily
-  const getDailyFeaturedPosts = () => {
-    const today = new Date();
-    const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000);
-    const startIndex = (dayOfYear % (blogPosts.length - 3));
-    return blogPosts.slice(startIndex, startIndex + 4);
-  };
-
-  const featuredPosts = getDailyFeaturedPosts();
+  // Filter posts based on category and search
+  const filteredPosts = blogPosts.filter(post => {
+    const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
+    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <>
       <Navigation />
       
       <main className="min-h-screen bg-brand-neutral dark:bg-gray-900">
-        {/* Hero Section - Centered & Optimized */}
+        {/* Hero Section */}
         <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 bg-gradient-to-br from-brand-neutral via-white to-brand-neutral/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
           <div className="absolute top-20 right-10 w-96 h-96 bg-brand-purple/5 dark:bg-brand-purple/20 rounded-full blur-3xl" />
           <div className="absolute bottom-20 left-10 w-96 h-96 bg-brand-blue/5 dark:bg-brand-blue/20 rounded-full blur-3xl" />          
           <div className="container-custom relative z-10">
             <div className="max-w-5xl mx-auto text-center">
               <div className="inline-block px-4 py-2 bg-brand-purple/10 dark:bg-brand-purple/20 rounded-full mb-6">
-                <span className="text-brand-purple text-sm font-medium">Blog</span>
+                <span className="text-brand-purple text-sm font-medium">All Articles</span>
               </div>
               
               <h1 className="font-heading font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-brand-black dark:text-white mb-6">
-                Blog
+                All Articles
               </h1>
               
               <p className="text-lg sm:text-xl md:text-2xl text-brand-purple font-semibold leading-relaxed max-w-3xl mx-auto mb-4">
-                Insights, tutorials, and deep dives on AI, SaaS, and developer tools.
-              </p>
-              
-              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mb-2">
-                I write practical, clear content for builders — from developers and product managers to founders and technical teams.
+                Browse all posts across different categories.
               </p>
               
               <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
-                Browse by category or explore the latest posts.
+                Filter by category or use the search to find what you're looking for.
               </p>
 
-              {/* Search Bar - Larger & Centered */}
+              {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
                   <input
                     type="text"
                     placeholder="Search tutorials, concepts, ideas…"
-                    disabled
-                    className="w-full px-8 py-5 pr-16 rounded-3xl border-2 border-brand-neutral dark:border-gray-700 focus:border-brand-purple focus:outline-none text-brand-black dark:text-white dark:bg-gray-800 placeholder-gray-400 transition-colors text-lg shadow-lg cursor-not-allowed opacity-50"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full px-8 py-5 pr-16 rounded-3xl border-2 border-brand-neutral dark:border-gray-700 focus:border-brand-purple focus:outline-none text-brand-black dark:text-white dark:bg-gray-800 placeholder-gray-400 transition-colors text-lg shadow-lg"
                   />
                   <svg
                     className="absolute right-6 top-1/2 -translate-y-1/2 w-7 h-7 text-gray-400"
@@ -279,174 +262,120 @@ export default function BlogPage() {
                 </div>
               </div>
 
-              {/* Search Helper Text */}
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
                 (Find exactly what you need.)
               </p>
-
-              {/* Quick Stats - Removed */}
-              <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
-                <div className="text-center">
-                  <div className="font-heading font-bold text-4xl md:text-5xl text-brand-purple mb-2">{blogPosts.length}</div>
-                  <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Articles</div>
-                </div>
-                <div className="text-center">
-                  <div className="font-heading font-bold text-4xl md:text-5xl text-brand-purple mb-2">{categories.length - 1}</div>
-                  <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Categories</div>
-                </div>
-                <div className="text-center">
-                  <div className="font-heading font-bold text-4xl md:text-5xl text-brand-purple mb-2">{featuredPosts.length}</div>
-                  <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Featured</div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* Browse by Category Section */}
-        <section className="section-padding bg-white dark:bg-gray-800">
-          <div className="container-custom max-w-6xl">
-            <h2 className="font-heading font-bold text-3xl md:text-4xl text-brand-black dark:text-white mb-2 text-center">
-              <span className="text-brand-purple">⭐</span> Browse by Category
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 text-center">
-              Find content tailored to your interests
-            </p>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categories.filter(cat => cat.name !== 'All').map((category) => (
-                <div
-                  key={category.slug}
-                  onClick={() => window.location.href = '/blog/all'}
-                  className={`group bg-gradient-to-br ${category.color} rounded-2xl p-6 cursor-pointer border-2 ${category.borderColor} ${category.hoverColor} hover:shadow-xl transition-all duration-300 hover:scale-[1.02]`}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 flex-shrink-0">
-                      {category.iconComponent && <category.iconComponent />}
-                    </div>
-                    <div className="flex-grow">
-                      <h3 className="font-heading font-bold text-xl md:text-2xl text-brand-black dark:text-white mb-2 group-hover:text-brand-purple transition-colors">
-                        {category.name}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                        {category.description}
-                      </p>
-                      <button className="inline-flex items-center gap-2 text-brand-purple font-semibold group-hover:gap-3 transition-all">
-                        <span>Explore</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Category Navigation - Centered & Cleaner */}
+        {/* Category Navigation */}
         <section className="py-6 sm:py-8 bg-white dark:bg-gray-800 sticky top-16 sm:top-20 z-40 shadow-sm">
           <div className="container-custom">
             <div className="flex justify-center">
               <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
                 {categories.map((category) => (
-                  <Link
+                  <button
                     key={category.slug}
-                    href="/blog/all"
-                    className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-2xl font-medium text-sm sm:text-base whitespace-nowrap transition-all duration-300 bg-brand-neutral dark:bg-gray-700 text-brand-black dark:text-white hover:bg-brand-purple/10 dark:hover:bg-brand-purple/20"
+                    onClick={() => setSelectedCategory(category.name)}
+                    className={`flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-2xl font-medium text-sm sm:text-base whitespace-nowrap transition-all duration-300 ${
+                      selectedCategory === category.name
+                        ? 'bg-brand-purple text-white shadow-lg shadow-brand-purple/20'
+                        : 'bg-brand-neutral dark:bg-gray-700 text-brand-black dark:text-white hover:bg-brand-purple/10 dark:hover:bg-brand-purple/20'
+                    }`}
                   >
                     <span className="text-lg">{category.icon}</span>
                     <span>{category.name === 'AI & ML' ? 'AI' : category.name === 'SaaS & Product' ? 'SaaS' : category.name === 'Deep Dives' ? 'Deep' : category.name === 'Everyday User' ? 'Everyday' : category.name}</span>
-                  </Link>
+                  </button>
                 ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Featured Posts */}
-        <section className="section-padding bg-white dark:bg-gray-800">
+        {/* All Posts Grid */}
+        <section className="section-padding bg-brand-neutral dark:bg-gray-900">
           <div className="container-custom">
-            <h2 className="font-heading font-bold text-3xl md:text-4xl text-brand-black dark:text-white mb-2">
-              <span className="text-brand-purple">⭐</span> Featured Posts
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
-              (These will change once you start publishing.)
-            </p>
+            {!searchQuery && selectedCategory === 'All' && (
+              <h2 className="font-heading font-bold text-3xl md:text-4xl text-brand-black dark:text-white mb-8">
+                All <span className="text-brand-purple">Articles</span>
+              </h2>
+            )}
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-12">
-              {featuredPosts.map((post) => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.slug}`}
-                  className="card overflow-hidden group cursor-pointer h-full flex flex-col hover:shadow-xl transition-shadow"
-                >
-                  {/* Image/Icon Area */}
-                  <div className={`h-32 sm:h-40 lg:h-48 bg-gradient-to-br ${post.color} flex items-center justify-center text-4xl sm:text-5xl lg:text-6xl relative overflow-hidden`}>
-                    <div className="w-16 sm:w-20 lg:w-24">
-                      {post.imageComponent && <post.imageComponent />}
-                    </div>
-                    {/* Category Badge */}
-                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                      <span className="px-2 sm:px-3 py-1 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-brand-purple text-xs sm:text-sm font-medium rounded-full">
-                        {post.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-4 sm:p-5 lg:p-6 flex flex-col flex-grow">
-                    {/* Meta Info */}
-                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2 sm:mb-3">
-                      <span>{post.date}</span>
-                      <span>•</span>
-                      <span>{post.readTime}</span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="font-heading font-bold text-base sm:text-lg lg:text-xl text-brand-black dark:text-white mb-2 sm:mb-3 group-hover:text-brand-purple transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-
-                    {/* Excerpt */}
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">
-                      {post.excerpt}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
-                      {post.tags.slice(0, 3).map((tag, tagIndex) => (
-                        <span
-                          key={tagIndex}
-                          className="px-2 py-1 bg-brand-neutral dark:bg-gray-700 text-brand-black dark:text-gray-200 text-xs font-medium rounded-lg"
-                        >
-                          {tag}
+            {filteredPosts.length === 0 ? (
+              <div className="text-center py-20">
+                <div className="text-6xl mb-4">🔍</div>
+                <h3 className="font-heading font-bold text-2xl text-brand-black dark:text-white mb-2">
+                  No articles found
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Try adjusting your search or filter to find what you're looking for.
+                </p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredPosts.map((post) => (
+                  <Link
+                    key={post.id}
+                    href={`/blog/${post.slug}`}
+                    className="card overflow-hidden group cursor-pointer h-full flex flex-col"
+                  >
+                    {/* Image/Icon Area */}
+                    <div className={`h-40 bg-gradient-to-br ${post.color} flex items-center justify-center text-5xl relative overflow-hidden`}>
+                      <div className="w-20 h-20">
+                        {post.imageComponent && <post.imageComponent />}
+                      </div>
+                      {/* Category Badge */}
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-brand-purple text-xs font-medium rounded-full">
+                          {post.category}
                         </span>
-                      ))}
+                      </div>
                     </div>
 
-                    {/* Read More Link */}
-                    <div className="flex items-center gap-2 text-brand-purple font-medium mt-auto text-sm sm:text-base">
-                      <span>Read More</span>
-                      <svg className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+                    {/* Content */}
+                    <div className="p-6 flex flex-col flex-grow">
+                      {/* Meta Info */}
+                      <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-3">
+                        <span>{post.date}</span>
+                        <span>•</span>
+                        <span>{post.readTime}</span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="font-heading font-bold text-lg text-brand-black mb-3 group-hover:text-brand-purple transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+
+                      {/* Excerpt */}
+                      <p className="text-gray-600 leading-relaxed mb-4 line-clamp-2 flex-grow">
+                        {post.excerpt}
+                      </p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {post.tags.slice(0, 2).map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className="px-2 py-1 bg-brand-neutral dark:bg-gray-700 text-brand-black dark:text-gray-200 text-xs font-medium rounded-lg"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Read More Link */}
+                      <div className="flex items-center gap-2 text-brand-purple font-medium mt-auto">
+                        <span>Read Article</span>
+                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            
-            {/* View All Posts Button */}
-            <div className="flex justify-center pt-8 border-t border-gray-200 dark:border-gray-700 mt-8">
-              <Link
-                href="/blog/all"
-                className="px-8 py-3 bg-brand-purple text-white font-semibold rounded-2xl hover:bg-brand-purple/90 transition-colors shadow-lg hover:shadow-xl"
-              >
-                View All Posts
-              </Link>
-            </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
