@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
@@ -202,7 +203,7 @@ const categories = [
   { name: 'Everyday User', slug: 'everyday-user', icon: '💎', iconComponent: EverydayUserIcon, description: 'Guides for everyday tech users.' },
 ];
 
-export default function AllBlogsPage() {
+function BlogContent() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category');
   
@@ -432,5 +433,13 @@ export default function AllBlogsPage() {
 
       <Footer />
     </>
+  );
+}
+
+export default function AllBlogsPage() {
+  return (
+    <Suspense fallback={null}>
+      <BlogContent />
+    </Suspense>
   );
 }
