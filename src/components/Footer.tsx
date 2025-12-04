@@ -19,8 +19,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-gray-400 leading-relaxed max-w-md mb-4 sm:mb-6 text-xs sm:text-sm">
-              Technical Writer + Developer creating beautiful documentation and web experiences 
-              that make complex things simple.
+              Clear writing for AI and SaaS teams.
             </p>
             {/* Social Links */}
             <div className="flex gap-3 sm:gap-4">
@@ -97,8 +96,8 @@ export default function Footer() {
             <h3 className="font-heading font-bold text-base sm:text-lg mb-3 sm:mb-4">Get in Touch</h3>
             <ul className="space-y-2 text-gray-400 text-xs sm:text-sm">
               <li>
-                <a href="mailto:hello@thetechwriter.dev" className="hover:text-brand-purple transition-colors">
-                  hello@thetechwriter.dev
+                <a href="mailto:nafisat@thetechwriter.dev" className="hover:text-brand-purple transition-colors">
+                  nafisat@thetechwriter.dev
                 </a>
               </li>
               <li className="flex items-center gap-2">

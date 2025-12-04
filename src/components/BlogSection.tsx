@@ -103,19 +103,13 @@ export default function BlogSection() {
     <section id="blog" className="section-padding bg-gray-50 dark:bg-gray-900">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 sm:mb-16 gap-4 sm:gap-6">
-          <div>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-brand-black dark:text-white">
-              Latest from the <span className="text-brand-purple">Blog</span>
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 mt-2 sm:mt-4 max-w-xl">
-              Writing about AI, developer tools, and the future of software.
-              Tutorials, insights, and clear explanations for anyone building modern tech.
-            </p>
-          </div>
-          <a href="/blog" className="btn-outline self-start md:self-end text-sm sm:text-base">
-            View All Posts
-          </a>
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-brand-black dark:text-white">
+            <span className="text-brand-purple">Blog</span>
+          </h2>
+          <p className="text-sm sm:text-base md:text-lg text-brand-purple dark:text-brand-purple mt-2 sm:mt-4">
+            Insights on AI, SaaS, and clarity.
+          </p>
         </div>
 
         {/* Blog Posts Bento Grid - Static */}
@@ -239,6 +233,16 @@ export default function BlogSection() {
                 </article>
               );
             })}
+        </div>
+
+        {/* CTA Below Blog */}
+        <div className="mt-12 sm:mt-16 text-center space-y-6 sm:space-y-8">
+          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 font-semibold">
+            If you want to see how I think and write, explore the blog.
+          </p>
+          <a href="/blog" className="btn-primary inline-block text-sm sm:text-base">
+            Read the Blog
+          </a>
         </div>
       </div>
     </section>

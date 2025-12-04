@@ -15,43 +15,30 @@ export default function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-brand-purple/10 dark:bg-brand-purple/20 px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full animate-fade-in-up">
             <span className="w-1 sm:w-1.5 md:w-2 h-1 sm:h-1.5 md:h-2 bg-brand-purple rounded-full animate-pulse" />
-            <span className="text-brand-purple dark:text-brand-purple text-xs sm:text-sm font-medium">Available for Projects</span>
+            <span className="text-brand-purple dark:text-brand-purple text-sm sm:text-base md:text-lg font-medium">Available for Projects</span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight text-brand-black dark:text-white animate-fade-in-up" style={{animationDelay: '0.1s'}}>
-            I write. I build. I make complex tech simple.
+          <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight text-brand-black dark:text-white animate-fade-in-up" style={{animationDelay: '0.1s'}}>
+            Clear content for modern AI & SaaS products.
           </h1>
 
-          {/* Scrolling Marquee - Responsive with overflow handling */}
-          <div className="relative overflow-hidden py-2 sm:py-3 md:py-4 lg:py-6 animate-fade-in-up w-full" style={{animationDelay: '0.2s'}}>
-            <div className="flex animate-marquee whitespace-nowrap">
-              <span className="font-heading font-bold text-xs sm:text-sm md:text-lg lg:text-2xl xl:text-3xl text-brand-purple mx-2 sm:mx-4 md:mx-6 lg:mx-8 flex-shrink-0">
-                AI, SaaS, APIs — explained clearly.
-              </span>
-              <span className="font-heading font-bold text-xs sm:text-sm md:text-lg lg:text-2xl xl:text-3xl text-brand-purple mx-2 sm:mx-4 md:mx-6 lg:mx-8 flex-shrink-0">
-                AI, SaaS, APIs — explained clearly.
-              </span>
-              <span className="font-heading font-bold text-xs sm:text-sm md:text-lg lg:text-2xl xl:text-3xl text-brand-purple mx-2 sm:mx-4 md:mx-6 lg:mx-8 flex-shrink-0">
-                AI, SaaS, APIs — explained clearly.
-              </span>
-              <span className="font-heading font-bold text-xs sm:text-sm md:text-lg lg:text-2xl xl:text-3xl text-brand-purple mx-2 sm:mx-4 md:mx-6 lg:mx-8 flex-shrink-0">
-                AI, SaaS, APIs — explained clearly.
-              </span>
-            </div>
-          </div>
+          {/* Subheading Text */}
+          <p className="font-heading font-bold text-sm sm:text-base md:text-xl lg:text-3xl xl:text-4xl text-brand-purple leading-relaxed max-w-3xl mx-auto px-2 sm:px-0 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            I help product teams explain complex features, educate users, and grow through content that's simple, smart, and genuinely helpful.
+          </p>
 
           {/* Subtext */}
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto px-2 sm:px-0 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-            I create documentation, tutorials, and developer content that help your users learn faster and your product stand out.
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto px-2 sm:px-0 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+            If you want users to understand your product, hire a writer who understands your product.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row justify-center gap-2.5 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            <a href="/contact" className="btn-primary text-center group text-xs sm:text-sm md:text-base">
+            <a href="/contact" className="btn-primary text-center group text-sm sm:text-base md:text-lg">
               <span className="inline-block group-hover:animate-bounce-soft">Hire Me</span>
             </a>
-            <a href="/work" className="btn-outline text-center group text-xs sm:text-sm md:text-base">
+            <a href="/work" className="btn-outline text-center group text-sm sm:text-base md:text-lg">
               <span className="inline-block group-hover:animate-bounce-soft">View Portfolio</span>
             </a>
           </div>

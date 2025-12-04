@@ -164,9 +164,8 @@ export default function FeaturedWork() {
           <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-brand-black dark:text-white mb-4">
             <span className="text-brand-purple">Portfolio</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A collection of writing samples, tutorials, and documentation I've created around AI, SaaS, and developer tools.
-            Each piece is designed to show how I simplify complex technology for real users.
+          <p className="text-lg md:text-xl text-brand-purple dark:text-brand-purple max-w-3xl mx-auto">
+            A few examples of my work.
           </p>
         </div>
 
@@ -375,9 +374,12 @@ export default function FeaturedWork() {
         )}
 
         {/* View All Button */}
-        <div className="text-center mt-8 sm:mt-12">
-          <a href="/work" className="btn-outline">
-            View All Projects
+        <div className="text-center mt-8 sm:mt-12 space-y-6">
+          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 font-semibold">
+            If you want content like this for your product, let's work together.
+          </p>
+          <a href="/work" className="btn-primary inline-block">
+            View Full Portfolio
           </a>
         </div>
       </div>

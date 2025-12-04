@@ -366,48 +366,23 @@ export default function WorkPage() {
           
           <div className="container-custom relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-block px-4 py-2 bg-brand-purple/10 dark:bg-brand-purple/20 rounded-full mb-6 animate-fade-in-up">
-                <span className="text-brand-purple text-sm font-medium">Featured Work</span>
-              </div>
-              
               <h1 className="font-heading font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-brand-black dark:text-white mb-6 animate-fade-in-up" style={{animationDelay: '0.1s'}}>
                 Portfolio
               </h1>
               
-              {/* Scrolling Marquee Subheading */}
-              <div className="relative overflow-hidden py-6 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                <div className="flex animate-marquee whitespace-nowrap">
-                  <span className="text-lg sm:text-xl md:text-2xl text-brand-purple font-semibold mx-8">
-                    A curated collection of documentation, tutorials, and technical content I've created around AI, SaaS, and developer tools.
-                  </span>
-                  <span className="text-lg sm:text-xl md:text-2xl text-brand-purple font-semibold mx-8">
-                    A curated collection of documentation, tutorials, and technical content I've created around AI, SaaS, and developer tools.
-                  </span>
-                  <span className="text-lg sm:text-xl md:text-2xl text-brand-purple font-semibold mx-8">
-                    A curated collection of documentation, tutorials, and technical content I've created around AI, SaaS, and developer tools.
-                  </span>
-                  <span className="text-lg sm:text-xl md:text-2xl text-brand-purple font-semibold mx-8">
-                    A curated collection of documentation, tutorials, and technical content I've created around AI, SaaS, and developer tools.
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Portfolio Intro Section */}
-        <section className="pt-8 sm:pt-12 pb-12 sm:pb-16 bg-gradient-to-br from-brand-neutral via-white to-brand-neutral/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in-up">
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed">
-                Organized by content type — from API docs to tutorials to technical articles.
+              <p className="text-xl sm:text-2xl md:text-3xl text-brand-purple font-semibold mb-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+                A few examples of my work.
+              </p>
+              
+              <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+                I write clear, useful content for AI and SaaS products — including tutorials, explainers, blog posts, and product education content.
               </p>
             </div>
           </div>
         </section>
 
         {/* Projects by Category */}
-        <section className="section-padding bg-brand-neutral dark:bg-gray-900">
+        <section className="section-padding bg-brand-neutral dark:bg-gray-900 pt-16 sm:pt-24 md:pt-32">
           <div className="container-custom max-w-5xl">
             {/* Developer Documentation */}
             <div className="mb-16">
@@ -577,20 +552,12 @@ export default function WorkPage() {
           <div className="container-custom">
             <div className="bg-gradient-to-br from-brand-black to-brand-purple/90 rounded-3xl p-12 md:p-16 text-center text-white relative overflow-hidden">              
               <div className="relative z-10 max-w-3xl mx-auto">
-                <h2 className="font-heading font-bold text-4xl md:text-5xl mb-6">
-                  Want documentation like this for your product?
-                </h2>
-                <p className="text-xl text-gray-200 mb-8">
-                  I write for AI products, SaaS platforms, and developer tools.
+                <p className="text-xl md:text-2xl mb-8">
+                  If you want content like this for your product, let's work together.
                 </p>
-                <div className="flex flex-wrap gap-4 justify-center">
-                  <a href="/contact" className="bg-white text-brand-black px-8 py-4 rounded-2xl font-heading font-bold hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                    Hire Me
-                  </a>
-                  <a href="/services" className="border-2 border-white text-white px-8 py-4 rounded-2xl font-heading font-bold hover:bg-white hover:text-brand-black transition-all duration-300">
-                    View Services
-                  </a>
-                </div>
+                <a href="/contact" className="btn-primary inline-block bg-white text-brand-black px-8 py-4 rounded-2xl font-heading font-bold hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                  Hire Me
+                </a>
               </div>
             </div>
           </div>

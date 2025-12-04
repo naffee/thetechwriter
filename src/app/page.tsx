@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import ProblemSection from '@/components/ProblemSection';
+import SolutionSection from '@/components/SolutionSection';
+import PlanSection from '@/components/PlanSection';
 import FeaturedWork from '@/components/FeaturedWork';
 import AboutSection from '@/components/AboutSection';
 import BlogSection from '@/components/BlogSection';
@@ -45,6 +48,9 @@ export default function Home() {
       <Navigation />
       <main className="dark:bg-gray-900 bg-gray-50">
         <HeroSection />
+        <ProblemSection />
+        <SolutionSection />
+        <PlanSection />
         <FeaturedWork />
         <AboutSection />
         <BlogSection />

@@ -8,165 +8,109 @@ import Footer from '@/components/Footer';
 const services = [
   {
     id: 1,
-    icon: '📚',
-    title: 'Technical Documentation',
-    tagline: 'Clear, structured documentation for AI tools, SaaS products, and developer platforms',
-    description: 'Clear, structured documentation for AI tools, SaaS products, and developer platforms.',
-    color: 'from-brand-purple/20 to-brand-blue/20',
-    features: [
-      'Product & feature documentation',
-      'Help-center pages',
-      'UX & in-app content',
-      'Release notes',
-      'Knowledge bases',
-      'Workflow overviews',
+    icon: '🔵',
+    title: 'Content Writing for AI & SaaS',
+    tagline: 'Smart, well-structured content designed to educate users and strengthen your product\'s presence.',
+    color: 'from-blue-500/20 to-cyan-500/20',
+    items: [
+      'blog posts & long-form articles',
+      'use-case content',
+      'comparison posts',
+      'feature explainers',
+      'SEO content with depth',
+      'thought-leadership pieces',
     ],
+    bestFor: 'teams that want consistent, high-quality content that feels simple, helpful, and trustworthy.',
   },
   {
     id: 2,
-    icon: '🔧',
-    title: 'API & SDK Documentation',
-    tagline: 'Developer-friendly guides that make integration smooth and straightforward',
-    description: 'Developer-friendly guides that make integration smooth and straightforward.',
-    color: 'from-brand-blue/20 to-brand-purple/20',
-    features: [
-      'API reference pages',
-      'Endpoint documentation',
-      'Parameter/response tables',
-      'SDK usage examples',
-      'Authentication guides',
-      'Error documentation',
-      'Sample apps + quickstarts',
+    icon: '🟣',
+    title: 'Tutorials & Developer-Friendly Guides',
+    tagline: 'Clear, step-by-step tutorials written with technical accuracy and user-friendly language.',
+    color: 'from-purple-500/20 to-fuchsia-500/20',
+    items: [
+      'feature tutorials',
+      'integration guides',
+      'how-to walkthroughs',
+      'beginner-friendly technical guides',
+      'developer articles with examples',
     ],
+    bestFor: 'products that need practical, accessible guidance for new or technical users.',
   },
   {
     id: 3,
-    icon: '✍️',
-    title: 'Tutorials & Technical Articles',
-    tagline: 'Step-by-step guides that teach users exactly how to use or integrate your product',
-    description: 'Step-by-step guides that teach users exactly how to use or integrate your product.',
-    color: 'from-brand-purple/20 to-brand-blush/40',
-    features: [
-      'AI Tutorials',
-      'Integration guides',
-      'Best practices',
-      'How-to articles',
-      'Code samples',
-      'Deep-dive explainers',
+    icon: '🟡',
+    title: 'AI Content & Technical Explanations',
+    tagline: 'Simple, accurate explanations of AI concepts, workflows, and features.',
+    color: 'from-yellow-500/20 to-amber-500/20',
+    items: [
+      'RAG, vector search & embeddings',
+      'AI workflow breakdowns',
+      'feature behavior explanations',
+      'model limitations & expectations',
+      'simple guides to complex concepts',
     ],
+    bestFor: 'AI teams that need clarity and correct communication for users, sales, and marketing.',
   },
   {
     id: 4,
-    icon: '🎨',
-    title: 'SaaS Product & UX Content',
-    tagline: 'Simple, clear explanations for non-technical users',
-    description: 'Simple, clear explanations for non-technical users.',
-    color: 'from-brand-blue/20 to-brand-blush/40',
-    features: [
-      'Feature documentation',
-      'Onboarding flows',
-      'UI microcopy',
-      'Tooltips & empty states',
-      'User guides',
-      'Step-by-step walkthroughs',
+    icon: '🟢',
+    title: 'Product Education & User Support Content',
+    tagline: 'Content that reduces confusion, supports onboarding, and helps users succeed.',
+    color: 'from-green-500/20 to-emerald-500/20',
+    items: [
+      'onboarding-friendly guides',
+      'feature breakdowns',
+      'help center articles',
+      'in-app microcopy (light)',
+      'FAQs',
+      'release notes',
     ],
-  },
-  {
-    id: 5,
-    icon: '🤖',
-    title: 'AI Content & Model Guides',
-    tagline: 'Clean documentation and explanations for AI-powered features',
-    description: 'Clean documentation and explanations for AI-powered features.',
-    color: 'from-violet-500/20 to-fuchsia-500/20',
-    features: [
-      'AI feature documentation',
-      'Prompt guides',
-      'RAG workflow guides',
-      'Model behavior explanations',
-      'AI onboarding content',
-    ],
-  },
-  {
-    id: 6,
-    icon: '📝',
-    title: 'Website & Product Messaging',
-    tagline: 'Technical landing page copy that explains your product clearly and converts',
-    description: 'Technical landing page copy that explains your product clearly and converts.',
-    color: 'from-emerald-400/20 to-teal-500/20',
-    features: [
-      'Landing page copy',
-      'Feature descriptions',
-      'Product pages',
-      'Value proposition writing',
-      'Conversion-focused microcopy',
-    ],
+    bestFor: 'SaaS teams improving activation, retention, and everyday product clarity.',
   },
 ];
 
-// Pricing packages
-const packages = [
+// Pricing data
+const pricingData = [
   {
-    name: 'Starter Package',
-    description: 'Perfect for quick wins and one-off pieces',
-    price: '$200–$500',
-    popular: false,
-    features: [
-      '1 technical tutorial or',
-      '1 feature documentation page or',
-      '1 UX/content improvement task',
-      'Light research',
-      'Clean, modern formatting',
-    ],
-    cta: 'Get Started',
-    color: 'border-gray-200',
+    title: 'Blog posts & articles (AI + SaaS):',
+    price: '$0.25 – $0.40 per word',
   },
   {
-    name: 'Standard Package',
-    description: 'Best for teams launching new features or improving existing documentation',
-    price: '$700–$1,500',
-    popular: true,
-    features: [
-      '3–5 pages of documentation',
-      'or 2 tutorials/integration guides',
-      'or 1 API section with examples',
-      'Editing of existing docs',
-      '1 revision round',
-    ],
-    cta: 'Most Popular',
-    color: 'border-brand-purple',
+    title: 'Technical tutorials & developer guides:',
+    price: '$0.35 – $0.60 per word',
   },
   {
-    name: 'Premium Package',
-    description: 'For teams that need full, structured, developer-ready documentation',
-    price: '$2,000–$5,000+',
-    popular: false,
-    features: [
-      'Complete feature or product documentation',
-      'Quickstarts + onboarding flow',
-      'API reference + examples',
-      'Tutorials with runnable code',
-      'Product messaging',
-      '2–3 revision rounds',
-      'Priority communication',
-    ],
-    cta: 'Go Premium',
-    color: 'border-gray-200',
+    title: 'Product explainers & onboarding content:',
+    price: 'Project-based pricing starting at $250+ per feature',
   },
   {
-    name: 'Monthly Retainer',
-    description: 'For teams shipping updates every week',
-    price: '$800–$3,500/mo',
-    popular: false,
-    features: [
-      'Docs updates',
-      'Release notes',
-      'Tutorials',
-      'Help-center content',
-      'Feature messaging',
-      'Reserved monthly hours',
-    ],
-    cta: 'Contact Me',
-    color: 'border-gray-200',
+    title: 'Monthly content packages:',
+    price: 'Custom packages available for teams publishing consistently.',
+  },
+];
+
+// FAQ data (updated)
+const faqData = [
+  {
+    question: 'How do we get started?',
+    answer: 'We begin with a short call to understand your product, audience, and content needs.',
+  },
+  {
+    question: 'Can you work with technical concepts?',
+    answer: 'Yes. I specialize in AI, SaaS, and developer-focused content.',
+  },
+  {
+    question: 'Can you match our voice and style?',
+    answer: 'Absolutely — I adapt to your tone and product personality.',
+  },
+  {
+    question: 'Do you offer revisions?',
+    answer: 'Yes. Every project includes revisions to make sure the content feels accurate and clear.',
+  },
+  {
+    question: 'Do you provide content strategy?',
+    answer: 'Yes — I can help with topic planning, structure, and overall content direction.',
   },
 ];
 
@@ -180,63 +124,26 @@ const process = [
   },
   {
     step: '02',
-    title: 'Scope Definition',
-    description: 'I create a detailed proposal with scope, deliverables, and timeline.',
+    title: 'Content Planning',
+    description: 'I research and outline the content structure with you.',
     icon: '📋',
   },
   {
     step: '03',
-    title: 'Outline',
-    description: 'I develop a content outline or structure for your approval before writing.',
-    icon: '📑',
-  },
-  {
-    step: '04',
-    title: 'Drafts',
-    description: 'I create high-quality drafts with clear examples and proper formatting.',
+    title: 'Draft & Review',
+    description: 'I create clear, well-structured drafts for your feedback.',
     icon: '✨',
   },
   {
-    step: '05',
+    step: '04',
     title: 'Revisions',
-    description: 'Collaborate on feedback and refine until it\'s perfect.',
+    description: 'We refine until the content feels accurate, clear, and ready to publish.',
     icon: '🔄',
-  },
-  {
-    step: '06',
-    title: 'Delivery',
-    description: 'Final delivery with all assets and optional launch support.',
-    icon: '🚀',
   },
 ];
 
-// FAQ data
-const faqs = [
-  {
-    question: 'Do you work with early-stage startups?',
-    answer: 'Yes. I work with solo founders, small teams, and growing companies. I understand the constraints of early-stage startups and can work within your budget.',
-  },
-  {
-    question: 'Do you sign NDAs?',
-    answer: 'Yes — especially for unreleased products or sensitive APIs. Your intellectual property and confidential information are safe with me.',
-  },
-  {
-    question: 'Do you provide revisions?',
-    answer: 'All packages include 1–3 revision rounds depending on scope. I want to make sure you\'re 100% happy with the final deliverable.',
-  },
-  {
-    question: 'Can you write code samples?',
-    answer: 'Yes — including runnable examples and integration snippets. I\'m comfortable with JavaScript, TypeScript, Python, and modern frameworks like Next.js and React.',
-  },
-  {
-    question: 'Do you work inside tools like GitHub, Notion, or Confluence?',
-    answer: 'Absolutely. I can work directly in your existing tools and workflows, whether that\'s GitHub, Notion, Confluence, GitBook, or custom documentation systems.',
-  },
-  {
-    question: 'What are your timelines?',
-    answer: 'Small tasks: 3–5 days. Standard package: 1–2 weeks. Full documentation sets: 2–6 weeks. Timelines depend on scope and complexity, and I always provide realistic estimates upfront.',
-  },
-];
+// FAQ data (updated)
+const faqs = faqData;
 
 export default function ServicesPage() {
   const [selectedService, setSelectedService] = useState<number | null>(null);
@@ -263,11 +170,15 @@ export default function ServicesPage() {
               </h1>
               
               <p className="text-lg sm:text-xl md:text-2xl text-brand-purple font-semibold leading-relaxed max-w-3xl mx-auto mb-6">
-                I write. I build. I make complex products easy to understand.
+                Clear, high-quality content for AI and SaaS products.
               </p>
               
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                I help AI startups, SaaS teams, and developer tool companies create clear technical documentation, tutorials, and product content. If your users are confused, your product won't grow — I help fix that with content that's structured, accurate, and easy to follow.
+                I help modern tech teams communicate their product simply, accurately, and in a way users actually understand.
+              </p>
+              
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mt-4">
+                My work supports onboarding, adoption, product education, and everyday communication.
               </p>
             </div>
           </div>
@@ -276,332 +187,91 @@ export default function ServicesPage() {
         {/* Services Grid */}
         <section className="section-padding bg-white dark:bg-gray-800">
           <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-brand-black dark:text-white mb-4">
-                What I <span className="text-brand-purple">Offer</span>
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                Comprehensive services tailored to your documentation and development needs
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-12">
               {services.map((service) => (
-                <div
-                  key={service.id}
-                  className="card overflow-hidden group cursor-pointer"
-                  onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
-                >
-                  <div className="p-8">
-                    {/* Icon & Header */}
-                    <div className="flex items-start justify-between mb-6">
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-3xl group-hover:scale-110 transition-transform`}>
-                        {service.icon}
-                      </div>
-                      <button className="text-brand-purple">
-                        <svg 
-                          className={`w-6 h-6 transition-transform duration-300 ${selectedService === service.id ? 'rotate-180' : ''}`}
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
+                <div key={service.id} className="card p-8">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-3xl flex-shrink-0`}>
+                      {service.icon}
                     </div>
-
-                    {/* Title & Tagline */}
-                    <h3 className="font-heading font-bold text-2xl text-brand-black dark:text-white mb-2 group-hover:text-brand-purple transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-brand-purple font-medium mb-4">
-                      {service.tagline}
-                    </p>
-
-                    {/* Description */}
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                      {service.description}
-                    </p>
-
-                    {/* Features List */}
-                    <div className="grid grid-cols-2 gap-3">
-                      {service.features.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                          <svg className="w-4 h-4 text-brand-purple flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{feature}</span>
-                        </div>
-                      ))}
+                    <div className="flex-grow">
+                      <h3 className="font-heading font-bold text-2xl text-brand-black dark:text-white mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-brand-purple font-medium">
+                        {service.tagline}
+                      </p>
                     </div>
-
-                    {/* Expanded Content */}
-                    {selectedService === service.id && (
-                      <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 space-y-6 animate-in fade-in duration-300">
-                        {/* CTA */}
-                        <div className="pt-4">
-                          <a href="/contact" className="btn-primary inline-block">
-                            Get Started
-                          </a>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing Packages */}
-        <section className="section-padding bg-brand-neutral dark:bg-gray-900">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-brand-black dark:text-white mb-4">
-                <span className="text-brand-purple">Packages</span>
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                Transparent, flexible, and designed for real product teams
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-              {packages.map((pkg, index) => (
-                <div
-                  key={index}
-                  className={`card p-8 relative ${pkg.popular ? 'ring-2 ring-brand-purple shadow-2xl scale-105' : ''}`}
-                >
-                  {pkg.popular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-purple text-white px-6 py-2 rounded-full text-sm font-bold">
-                      Most Popular
-                    </div>
-                  )}
-
-                  {/* Package Header */}
-                  <div className="text-center mb-6">
-                    <h3 className="font-heading font-bold text-2xl text-brand-black dark:text-white mb-2">
-                      {pkg.name}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                      {pkg.description}
-                    </p>
-                    <div className="text-4xl font-heading font-bold text-brand-purple mb-2">
-                      {pkg.price}
-                    </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Based on project scope</p>
                   </div>
 
-                  {/* Features */}
-                  <ul className="space-y-3 mb-8">
-                    {pkg.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-brand-purple flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    What I write:
+                  </p>
+                  
+                  <ul className="space-y-2 ml-6 mb-6">
+                    {service.items.map((item, index) => (
+                      <li key={index} className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                        <span className="text-brand-purple font-bold">•</span>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  {/* CTA Button */}
-                  <a
-                    href="/contact"
-                    className={`block text-center py-3 px-6 rounded-2xl font-heading font-bold transition-all duration-300 ${
-                      pkg.popular
-                        ? 'bg-brand-purple text-white hover:bg-brand-purple/90 hover:shadow-xl'
-                        : 'bg-brand-neutral dark:bg-gray-700 text-brand-black dark:text-white hover:bg-brand-purple hover:text-white'
-                    }`}
-                  >
-                    {pkg.cta}
-                  </a>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <span className="font-semibold">Best for:</span> {service.bestFor}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section className="section-padding bg-brand-neutral dark:bg-gray-900">
+          <div className="container-custom max-w-4xl mx-auto">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-brand-black dark:text-white mb-12 text-center">
+              <span className="text-brand-purple">⭐ Pricing</span>
+            </h2>
+            
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
+              I charge per word for articles and long-form content.
+            </p>
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-12">
+              Rates depend on depth, research, and technical complexity.
+            </p>
+
+            <div className="space-y-4 mb-12">
+              {pricingData.map((item, index) => (
+                <div key={index} className="card p-6">
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg text-gray-700 dark:text-gray-300 font-semibold">{item.title}</span>
+                    <span className="text-xl text-brand-purple font-bold">{item.price}</span>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <div className="text-center mt-12">
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Need something different? Let's create a custom package for your needs.
-              </p>
-              <a href="/contact" className="btn-outline">
-                Request Custom Quote
-              </a>
-            </div>
-
-            {/* Word-Based Pricing */}
-            <div className="mt-20 max-w-4xl mx-auto">
-              <div className="card p-8">
-                <h3 className="font-heading font-bold text-3xl text-brand-black dark:text-white mb-4 text-center">
-                  Content & Blog Writing <span className="text-brand-purple">(Word-Based Pricing)</span>
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-center mb-8">
-                  Some content types are better priced by word count — especially educational and long-form articles.
-                </p>
-                
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  <div className="bg-brand-neutral dark:bg-gray-800 rounded-2xl p-6">
-                    <h4 className="font-heading font-bold text-xl text-brand-black dark:text-white mb-3">
-                      Standard Technical Articles
-                    </h4>
-                    <p className="text-3xl font-bold text-brand-purple mb-2">$0.20 – $0.40/word</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Developer blog posts, tutorials, how-tos</p>
-                  </div>
-                  
-                  <div className="bg-brand-neutral dark:bg-gray-800 rounded-2xl p-6">
-                    <h4 className="font-heading font-bold text-xl text-brand-black dark:text-white mb-3">
-                      Advanced AI-Focused Articles
-                    </h4>
-                    <p className="text-3xl font-bold text-brand-purple mb-2">$0.40 – $0.60/word</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Deep dives, AI explainers, technical analysis</p>
-                  </div>
-                </div>
-                
-                <div className="bg-gradient-to-br from-brand-purple/10 to-brand-blue/10 dark:from-brand-purple/20 dark:to-brand-blue/20 rounded-2xl p-6 text-center">
-                  <p className="text-brand-black dark:text-white font-semibold mb-2">
-                    Flat rate options available starting at <span className="text-brand-purple font-bold">$150 per article</span>
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Best for: Developer blog posts • SEO content • AI explainers • Technical deep dives • Product tutorials
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Work With Me Section */}
-        <section className="section-padding bg-white dark:bg-gray-800">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-brand-black dark:text-white mb-12 text-center">
-                Why Teams Work <span className="text-brand-purple">With Me</span>
-              </h2>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <svg className="w-6 h-6 text-brand-purple flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-lg text-gray-700 dark:text-gray-300">
-                    I'm both a writer and developer, so my docs are accurate, modern, and developer-friendly.
-                  </p>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <svg className="w-6 h-6 text-brand-purple flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-lg text-gray-700 dark:text-gray-300">
-                    I specialize in AI, SaaS, and DevTools, not general writing.
-                  </p>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <svg className="w-6 h-6 text-brand-purple flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-lg text-gray-700 dark:text-gray-300">
-                    I explain complex concepts simply and clearly.
-                  </p>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <svg className="w-6 h-6 text-brand-purple flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-lg text-gray-700 dark:text-gray-300">
-                    I move fast and communicate well.
-                  </p>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <svg className="w-6 h-6 text-brand-purple flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-lg text-gray-700 dark:text-gray-300">
-                    I understand how real users think.
-                  </p>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <svg className="w-6 h-6 text-brand-purple flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-lg text-gray-700 dark:text-gray-300">
-                    I can work inside GitHub, Notion, Confluence, or your internal tools.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className="section-padding bg-white dark:bg-gray-800">
-          <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-brand-black dark:text-white mb-4">
-                How It <span className="text-brand-purple">Works</span>
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                A simple, transparent process from start to finish
+            <div className="card p-8 text-center">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                This pricing reflects the level of clarity, technical understanding, and research required to produce high-quality content for modern AI and SaaS products.
               </p>
             </div>
-
-            <div className="max-w-5xl mx-auto">
-              <div className="space-y-8">
-                {process.map((item, index) => (
-                  <div key={index} className="flex gap-6 items-start">
-                    {/* Step Number */}
-                    <div className="flex-shrink-0">
-                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-purple/20 to-brand-blue/20 dark:from-brand-purple/30 dark:to-brand-blue/30 flex items-center justify-center">
-                        <span className="text-3xl">{item.icon}</span>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 pt-2">
-                      <div className="flex items-baseline gap-3 mb-2">
-                        <span className="text-brand-purple font-heading font-bold text-lg">
-                          {item.step}
-                        </span>
-                        <h3 className="font-heading font-bold text-2xl text-brand-black dark:text-white">
-                          {item.title}
-                        </h3>
-                      </div>
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    {/* Connector Line */}
-                    {index < process.length - 1 && (
-                      <div className="absolute left-10 mt-24 w-0.5 h-16 bg-gradient-to-b from-brand-purple/20 to-transparent hidden md:block" />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
+
+        {/* Why Work With Me Section - REMOVED */}
+        {/* Process Section - REMOVED */}
 
         {/* FAQ Section */}
-        <section className="section-padding bg-brand-neutral dark:bg-gray-900">
+        <section className="section-padding bg-white dark:bg-gray-800">
           <div className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-brand-black dark:text-white mb-4">
-                Frequently Asked <span className="text-brand-purple">Questions</span>
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                Got questions? Here are answers to some common ones
-              </p>
-            </div>
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-brand-black dark:text-white mb-12 text-center">
+              <span className="text-brand-purple">⭐ FAQ</span>
+            </h2>
 
             <div className="max-w-3xl mx-auto space-y-4">
               {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="card overflow-hidden"
-                >
+                <div key={index} className="card overflow-hidden">
                   <button
                     onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
                     className="w-full p-6 text-left flex items-center justify-between gap-4"
@@ -631,36 +301,19 @@ export default function ServicesPage() {
                 </div>
               ))}
             </div>
-
-            <div className="text-center mt-12">
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Still have questions?
-              </p>
-              <a href="/contact" className="btn-primary">
-                Let's Talk
-              </a>
-            </div>
           </div>
         </section>
 
         {/* Final CTA */}
-        <section className="section-padding bg-gradient-to-br from-brand-black to-brand-purple/90 text-white relative overflow-hidden">          
+        <section className="section-padding bg-gradient-to-br from-brand-black to-brand-purple/90 text-white relative overflow-hidden">
           <div className="container-custom relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-heading font-bold text-4xl md:text-5xl mb-6">
-                Let's Work <span className="text-brand-purple">Together</span>
-              </h2>
-              <p className="text-xl text-gray-200 mb-8">
-                Whether you're building an AI tool, a SaaS product, or a developer platform, I'd love to help you explain it clearly and professionally.
+              <p className="text-xl md:text-2xl mb-8">
+                If you want clear, high-quality content for your product, let's work together.
               </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <a href="/contact" className="bg-white text-brand-black px-8 py-4 rounded-2xl font-heading font-bold hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                  Contact Me
-                </a>
-                <a href="/work" className="border-2 border-white text-white px-8 py-4 rounded-2xl font-heading font-bold hover:bg-white hover:text-brand-black transition-all duration-300">
-                  View Portfolio
-                </a>
-              </div>
+              <a href="/contact" className="btn-primary inline-block bg-white text-brand-black px-8 py-4 rounded-2xl font-heading font-bold hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                Hire Me
+              </a>
             </div>
           </div>
         </section>

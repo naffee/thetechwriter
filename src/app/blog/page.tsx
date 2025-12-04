@@ -6,7 +6,6 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { DeveloperIcon, AIIcon, SaaSIcon, DeepDivesIcon, WritingIcon, EverydayUserIcon, AllPostsIcon, AIContentGeneratorIcon, APIErrorsIcon, EmbeddingsIcon, PromptEngineeringIcon, OnboardingDesignIcon, PerfectOnboardingIcon, APIComparisonIcon, OAuthIcon, WriterToolsIcon, SimplicityIcon, ChatPromptsIcon, AIToolsIcon } from '@/components/BlogSVGIcons';
 
-
 // Blog post data
 const blogPosts = [
   {
@@ -396,29 +395,16 @@ export default function BlogPage() {
           </div>
         </section>
 
-        {/* Newsletter CTA */}
-        <section className="section-padding bg-white dark:bg-gray-900">
-          <div className="container-custom">
-            <div className="bg-gradient-to-br from-brand-black to-brand-purple/90 rounded-3xl p-12 md:p-16 text-center text-white relative overflow-hidden">              
-              <div className="relative z-10 max-w-2xl mx-auto">
-                <div className="text-5xl mb-6">📧</div>
-                <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">
-                  Want clarity in your inbox?
-                </h2>
-                <p className="text-xl text-gray-200 mb-8">
-                  Get tutorials, technical explainers, and AI how-tos — no spam, just value.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    className="flex-1 px-6 py-4 rounded-2xl text-brand-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-purple"
-                  />
-                  <button className="bg-white text-brand-black px-8 py-4 rounded-2xl font-heading font-bold hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 whitespace-nowrap">
-                    Subscribe
-                  </button>
-                </div>
-              </div>
+        {/* CTA Section */}
+        <section className="section-padding bg-gradient-to-br from-brand-black to-brand-purple/90 text-white relative overflow-hidden">
+          <div className="container-custom relative z-10">
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-xl md:text-2xl mb-8">
+                If you want content like this for your product, let's work together.
+              </p>
+              <a href="/contact" className="btn-primary inline-block bg-white text-brand-black px-8 py-4 rounded-2xl font-heading font-bold hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                Hire Me
+              </a>
             </div>
           </div>
         </section>
