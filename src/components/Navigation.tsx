@@ -28,9 +28,9 @@ export default function Navigation() {
     >
       <div className="container-custom flex items-center justify-between">
         {/* Logo with Cat */}
-        <a href="/" className="flex items-center gap-3 group cursor-pointer">
-          <CatMascot variant="peeking" className="w-10 h-10 group-hover:scale-110 transition-transform" />
-          <span className="font-heading font-bold text-xl md:text-2xl text-brand-black dark:text-white">
+        <a href="/" className="flex items-center gap-2 group cursor-pointer">
+          <CatMascot variant="peeking" className="w-12 h-12 sm:w-14 sm:h-14 group-hover:scale-110 transition-transform" />
+          <span className="font-heading font-bold text-2xl sm:text-3xl text-brand-black dark:text-white">
             thetechwriter<span className="text-brand-purple">.dev</span>
           </span>
         </a>

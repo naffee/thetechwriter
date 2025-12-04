@@ -51,6 +51,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.svg" />
         <SEOSchemas />
       </head>
       <body className="bg-brand-neutral text-brand-black dark:bg-gray-900 dark:text-gray-100 font-sans antialiased">
