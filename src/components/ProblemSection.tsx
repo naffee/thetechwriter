@@ -23,7 +23,7 @@ export default function ProblemSection() {
         {/* Section Header */}
         <div className="max-w-4xl mx-auto mb-16 sm:mb-20 text-center">
           <h2 className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-black dark:text-white leading-tight mb-6 sm:mb-8 animate-fade-in-up">
-            Your product is powerful — but users won't adopt what they don't understand.
+            Your product is powerful — but users won't use what they don't understand.
           </h2>
 
           <p className="text-xl sm:text-2xl md:text-3xl text-brand-purple dark:text-brand-purple leading-relaxed animate-fade-in-up" style={{animationDelay: '0.1s'}}>
@@ -56,7 +56,7 @@ export default function ProblemSection() {
           <div className="space-y-6 sm:space-y-8 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-brand-purple/10 to-brand-blue/10 dark:from-brand-purple/20 dark:to-brand-blue/20 border border-brand-purple/20 dark:border-brand-purple/30 backdrop-blur-sm animate-fade-in-up" style={{animationDelay: '0.8s'}}>
             <div>
             <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black dark:text-white leading-tight mb-3">
-                Your users deserve clarity.
+                Your users deserve clear information.
               </p>
               <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black dark:text-white leading-tight">
                 Your product deserves to be understood.

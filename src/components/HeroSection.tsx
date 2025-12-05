@@ -25,7 +25,7 @@ export default function HeroSection() {
 
           {/* Subheading Text */}
           <p className="font-heading font-bold text-sm sm:text-base md:text-xl lg:text-3xl xl:text-4xl text-brand-purple leading-relaxed max-w-3xl mx-auto px-2 sm:px-0 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            I help product teams explain complex features, educate users, and grow through content that's simple, smart, and genuinely helpful.
+            I help product teams explain their features clearly so users learn fast and businesses grow.
           </p>
 
           {/* Subtext */}

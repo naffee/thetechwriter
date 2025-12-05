@@ -18,35 +18,123 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
+  // Regex patterns for validation
+  const patterns = {
+    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    name: /^[a-zA-Z\s]{2,50}$/,
+    projectType: /^[a-zA-Z0-9\s,.-]{3,100}$/,
+    budget: /^[a-zA-Z0-9\s,.-]{0,100}$/,
+  };
+
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case 'name':
+        if (!value.trim()) return 'Name is required';
+        if (!patterns.name.test(value)) return 'Name must contain only letters and spaces (2-50 characters)';
+        return '';
+      case 'email':
+        if (!value.trim()) return 'Email is required';
+        if (!patterns.email.test(value)) return 'Please enter a valid email address';
+        return '';
+      case 'company':
+        if (!value.trim()) return 'Product description is required';
+        if (value.trim().length < 5) return 'Please provide at least 5 characters';
+        return '';
+      case 'projectType':
+        if (!value.trim()) return 'Content type is required';
+        if (!patterns.projectType.test(value)) return 'Please enter valid content types';
+        return '';
+      case 'budget':
+        if (value && !patterns.budget.test(value)) return 'Invalid audience format';
+        return '';
+      case 'timeline':
+        if (value && value.trim().length < 2) return 'Please provide more details';
+        return '';
+      case 'message':
+        if (!value.trim()) return 'Message is required';
+        if (value.trim().length < 5) return 'Please provide at least 5 characters';
+        return '';
+      default:
+        return '';
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    
+    // Real-time validation
+    const error = validateField(name, value);
+    setValidationErrors(prev => ({
+      ...prev,
+      [name]: error,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate all fields before submission
+    const errors: Record<string, string> = {};
+    Object.keys(formData).forEach(key => {
+      const error = validateField(key, formData[key as keyof typeof formData]);
+      if (error) errors[key] = error;
+    });
+    
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate form submission (replace with actual form handling)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        projectType: '',
-        budget: '',
-        timeline: '',
-        message: '',
+    try {
+      const response = await fetch('https://formspree.io/f/xeoyzpkd', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          product_description: formData.company,
+          content_type: formData.projectType,
+          audience: formData.budget,
+          timeline: formData.timeline,
+          message: formData.message,
+        }),
       });
       
-      // Reset success message after 5 seconds
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          projectType: '',
+          budget: '',
+          timeline: '',
+          message: '',
+        });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
-    }, 1500);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -198,6 +286,17 @@ export default function ContactPage() {
                     </div>
                   )}
 
+                  {submitStatus === 'error' && (
+                    <div className="mb-8 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl">
+                      <div className="flex items-center gap-3">
+                        <svg className="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                        </svg>
+                        <p className="text-red-800 font-medium">Something went wrong. Please try again or email me directly.</p>
+                      </div>
+                    </div>
+                  )}
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Name & Email */}
                     <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
@@ -212,9 +311,16 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 border-brand-neutral dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:border-brand-purple focus:outline-none transition-colors text-base sm:text-lg"
+                          className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 dark:bg-gray-900 dark:text-white focus:outline-none transition-colors text-base sm:text-lg ${
+                            validationErrors.name
+                              ? 'border-red-500 focus:border-red-500'
+                              : 'border-brand-neutral dark:border-gray-700 focus:border-brand-purple'
+                          }`}
                           placeholder="John Doe"
                         />
+                        {validationErrors.name && (
+                          <p className="text-red-600 text-xs sm:text-sm mt-1 font-medium">{validationErrors.name}</p>
+                        )}
                       </div>
 
                       <div>
@@ -228,9 +334,16 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 border-brand-neutral dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:border-brand-purple focus:outline-none transition-colors text-base sm:text-lg"
+                          className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 dark:bg-gray-900 dark:text-white focus:outline-none transition-colors text-base sm:text-lg ${
+                            validationErrors.email
+                              ? 'border-red-500 focus:border-red-500'
+                              : 'border-brand-neutral dark:border-gray-700 focus:border-brand-purple'
+                          }`}
                           placeholder="john@example.com"
                         />
+                        {validationErrors.email && (
+                          <p className="text-red-600 text-xs sm:text-sm mt-1 font-medium">{validationErrors.email}</p>
+                        )}
                       </div>
                     </div>
 
@@ -246,9 +359,16 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         rows={3}
-                        className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 border-brand-neutral dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:border-brand-purple focus:outline-none transition-colors resize-none text-base sm:text-lg"
+                        className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 dark:bg-gray-900 dark:text-white focus:outline-none transition-colors resize-none text-base sm:text-lg ${
+                          validationErrors.company
+                            ? 'border-red-500 focus:border-red-500'
+                            : 'border-brand-neutral dark:border-gray-700 focus:border-brand-purple'
+                        }`}
                         placeholder="What does your product do?"
                       />
+                      {validationErrors.company && (
+                        <p className="text-red-600 text-xs sm:text-sm mt-1 font-medium">{validationErrors.company}</p>
+                      )}
                     </div>
 
                     {/* Content Type & Audience */}
@@ -264,9 +384,16 @@ export default function ContactPage() {
                           value={formData.projectType}
                           onChange={handleChange}
                           required
-                          className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 border-brand-neutral dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:border-brand-purple focus:outline-none transition-colors text-base sm:text-lg"
+                          className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 dark:bg-gray-900 dark:text-white focus:outline-none transition-colors text-base sm:text-lg ${
+                            validationErrors.projectType
+                              ? 'border-red-500 focus:border-red-500'
+                              : 'border-brand-neutral dark:border-gray-700 focus:border-brand-purple'
+                          }`}
                           placeholder="e.g., blog posts, tutorials, product guides"
                         />
+                        {validationErrors.projectType && (
+                          <p className="text-red-600 text-xs sm:text-sm mt-1 font-medium">{validationErrors.projectType}</p>
+                        )}
                       </div>
 
                       <div>
@@ -279,9 +406,16 @@ export default function ContactPage() {
                           name="budget"
                           value={formData.budget}
                           onChange={handleChange}
-                          className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 border-brand-neutral dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:border-brand-purple focus:outline-none transition-colors text-base sm:text-lg"
+                          className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 dark:bg-gray-900 dark:text-white focus:outline-none transition-colors text-base sm:text-lg ${
+                            validationErrors.budget
+                              ? 'border-red-500 focus:border-red-500'
+                              : 'border-brand-neutral dark:border-gray-700 focus:border-brand-purple'
+                          }`}
                           placeholder="e.g., developers, product managers, end users"
                         />
+                        {validationErrors.budget && (
+                          <p className="text-red-600 text-xs sm:text-sm mt-1 font-medium">{validationErrors.budget}</p>
+                        )}
                       </div>
                     </div>
 
@@ -296,26 +430,40 @@ export default function ContactPage() {
                         value={formData.timeline}
                         onChange={handleChange}
                         rows={3}
-                        className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 border-brand-neutral dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:border-brand-purple focus:outline-none transition-colors resize-none text-base sm:text-lg"
+                        className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 dark:bg-gray-900 dark:text-white focus:outline-none transition-colors resize-none text-base sm:text-lg ${
+                          validationErrors.timeline
+                            ? 'border-red-500 focus:border-red-500'
+                            : 'border-brand-neutral dark:border-gray-700 focus:border-brand-purple'
+                        }`}
                         placeholder="Links, examples, or writing styles you like"
                       />
+                      {validationErrors.timeline && (
+                        <p className="text-red-600 text-xs sm:text-sm mt-1 font-medium">{validationErrors.timeline}</p>
+                      )}
                     </div>
 
-                    {/* Timeline */}
+                    {/* Message */}
                     <div>
                       <label htmlFor="message" className="block text-sm sm:text-base md:text-lg font-medium text-brand-black dark:text-white mb-1.5 sm:mb-2">
-                        Your ideal timeline *
+                        Additional message or timeline *
                       </label>
-                      <input
-                        type="text"
+                      <textarea
                         id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 border-brand-neutral dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:border-brand-purple focus:outline-none transition-colors text-base sm:text-lg"
-                        placeholder="e.g., ASAP, In 2 weeks, Next month"
+                        rows={3}
+                        className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl border-2 dark:bg-gray-900 dark:text-white focus:outline-none transition-colors resize-none text-base sm:text-lg ${
+                          validationErrors.message
+                            ? 'border-red-500 focus:border-red-500'
+                            : 'border-brand-neutral dark:border-gray-700 focus:border-brand-purple'
+                        }`}
+                        placeholder="Any additional details about your timeline or project"
                       />
+                      {validationErrors.message && (
+                        <p className="text-red-600 text-xs sm:text-sm mt-1 font-medium">{validationErrors.message}</p>
+                      )}
                     </div>
 
                     {/* Submit Button */}
