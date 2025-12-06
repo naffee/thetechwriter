@@ -11,7 +11,7 @@ export default function SEOSchemas() {
         "url": "https://thetechwriter.dev",
         "sameAs": [
           "https://twitter.com/thetechwriter",
-          "https://linkedin.com/in/thetechwriter"
+          "https://www.linkedin.com/in/nafisat-damisa-29956831a"
         ],
         "jobTitle": "Content Writer & Technical Writer",
         "description": "Professional content writer specializing in AI and SaaS products. I create clear, user-focused content including tutorials, explainers, blog posts, and product documentation.",

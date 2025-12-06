@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   authors: [{ name: "The Tech Writer" }],
   creator: "The Tech Writer",
   publisher: "The Tech Writer",
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -51,8 +54,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta name="theme-color" content="transparent" />
+        <meta name="color-scheme" content="light dark" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+        <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+        <link rel="apple-touch-icon" href="/favicon.svg?v=3" />
         <SEOSchemas />
       </head>
       <body className="bg-brand-neutral text-brand-black dark:bg-gray-900 dark:text-gray-100 font-sans antialiased">
